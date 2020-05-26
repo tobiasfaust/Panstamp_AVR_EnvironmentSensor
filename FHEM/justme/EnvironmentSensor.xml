@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<device>
+  <developer>justme</developer>
+  <product>Environment Sensor</product>
+  <pwrdownmode>true</pwrdownmode>
+  <config>
+    <!-- Configuration register. Register ID's start from 11 -->
+    <reg name="Configuration" id="11">
+      <param name="Sync Interval" type="num">
+        <position>0</position>
+        <size>2</size>
+        <default>0</default>
+        <verif>^(\d*)$</verif>
+      </param>
+      <param name="Zeitverzoegerung (ms) beim Daten Senden" type="num">
+        <position>2</position>
+        <size>2</size>
+        <default>0</default>
+        <verif>^(\d*)$</verif>
+      </param>
+      <param name="Altitude" type="num">
+        <position>4</position>
+        <size>2</size>
+        <default>0</default>
+        <verif>^(\d*)$</verif>
+      </param>
+      <param name="Day/NightShift Typ" type="num">
+        <position>6</position>
+        <size>1</size>
+        <default>0</default>
+        <verif>^(\d*)$</verif>
+      </param>
+      <param name="Day/NightShift Schwellwert" type="num">
+        <position>7</position>
+        <size>3</size>
+        <default>0</default>
+        <verif>^(\d*)$</verif>
+      </param>
+      <param name="Day/NightShift TX-Intervall" type="num">
+        <position>10</position>
+        <size>2</size>
+        <default>0</default>
+        <verif>^(\d*)$</verif>
+      </param>
+      <param name="HAS_Analog1 (1=Enable 0=Disable)" type="bin">
+        <position>12.0</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="HAS_Analog2 (1=Enable 0=Disable)" type="bin">
+        <position>12.1</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="HAS_Analog3 (1=Enable 0=Disable)" type="bin">
+        <position>12.2</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="HAS_Analog4 (1=Enable 0=Disable)" type="bin">
+        <position>12.3</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="HAS_DS18B20 (1=Enable 0=Disable)" type="bin">
+        <position>13.0</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="HAS_DHT22 (1=Enable 0=Disable)" type="bin">
+        <position>13.1</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="HAS_TSL2560 (1=Enable 0=Disable)" type="bin">
+        <position>13.2</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="HAS_BMP180 (1=Enable 0=Disable)" type="bin">
+        <position>13.3</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="Transmit BatteryVoltage (1=Enable 0=Disable)" type="bin">
+        <position>14.0</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="Transmit SolarVoltage (1=Enable 0=Disable)" type="bin">
+        <position>14.1</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="LED Debugging (1=Enable 0=Disable)" type="bin">
+        <position>14.2</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+      <param name="Day/NightShift (1=Enable 0=Disable)" type="bin">
+        <position>14.3</position>
+        <size>0.1</size>
+        <default>0</default>
+      </param>
+    </reg>
+  </config>
+  <regular>
+    <reg name="Voltage supply" id="12">
+      <endpoint name="Battery Voltage" type="num" dir="inp">
+        <position>0</position>
+        <size>2</size>
+        <units>
+          <unit name="V" factor="0.001" offset="0"/>
+        </units>
+      </endpoint>
+      <endpoint name="Solar Voltage" type="num" dir="inp">
+        <position>2</position>
+        <size>2</size>
+        <units>
+          <unit name="V" factor="0.001" offset="0"/>
+        </units>
+      </endpoint>
+    </reg>
+    <reg name="Analog" id="13">
+      <endpoint name="Analog level 0" type="num" dir="inp">
+        <position>0</position>
+        <size>2</size>
+      </endpoint>
+      <endpoint name="Analog level 1" type="num" dir="inp">
+        <position>2</position>
+        <size>2</size>
+      </endpoint>
+      <endpoint name="Analog level 2" type="num" dir="inp">
+        <position>4</position>
+        <size>2</size>
+      </endpoint>
+      <endpoint name="Analog level 3" type="num" dir="inp">
+        <position>6</position>
+        <size>2</size>
+      </endpoint>
+    </reg>
+    <reg name="1Wire" id="14">
+      <endpoint name="1wire_Temperature" type="num" dir="inp">
+        <position>0</position>
+        <size>2</size>
+        <units>
+          <unit name="C" factor="0.01" offset="-50"/>
+          <unit name="F" factor="0.018" offset="-58"/>
+          <unit name="K" factor="0.01" offset="223.15"/>
+        </units>
+      </endpoint>
+      <endpoint name="1wire_Address" dir="inp">
+        <position>2</position>
+        <size>8</size>
+      </endpoint>
+    </reg>
+    <reg name="DHT22" id="15">
+      <endpoint name="Temperature" type="num" dir="inp">
+        <position>0</position>
+        <size>2</size>
+        <units>
+          <unit name="C" factor="0.1" offset="-50"/>
+          <unit name="F" factor="0.18" offset="-58"/>
+          <unit name="K" factor="0.1" offset="223.15"/>
+        </units>
+      </endpoint>
+      <endpoint name="Humidity" type="num" dir="inp">
+        <position>2</position>
+        <size>2</size>
+        <units>
+          <unit name="%" factor="0.1" offset="0"/>
+        </units>
+      </endpoint>
+    </reg>
+    <reg name="BMP180" id="16">
+      <endpoint name="Temperature" type="num" dir="inp">
+        <position>0</position>
+        <size>2</size>
+        <units>
+          <unit name="C" factor="0.1" offset="-50"/>
+          <unit name="F" factor="0.18" offset="-58"/>
+          <unit name="K" factor="0.1" offset="223.15"/>
+        </units>
+      </endpoint>
+      <endpoint name="Pressure" type="num" dir="inp">
+        <position>2</position>
+        <size>4</size>
+        <units>
+          <unit name="mbar" factor="0.01" offset="0"/>
+          <unit name="Pa" factor="1" offset="0"/>
+          <unit name="bar" factor="0.00001" offset="0"/>
+        </units>
+      </endpoint>
+      <endpoint name="SeaLevelPressure" type="num" dir="inp">
+        <position>6</position>
+        <size>4</size>
+        <units>
+          <unit name="mbar" factor="0.01" offset="0"/>
+          <unit name="Pa" factor="1" offset="0"/>
+          <unit name="bar" factor="0.00001" offset="0"/>
+        </units>
+      </endpoint>
+    </reg>
+    <reg name="TSL2561" id="17">
+      <endpoint name="Luminosity" type="num" dir="inp">
+        <position>0</position>
+        <size>4</size>
+        <units>
+          <unit name="Lum" factor="1" offset="0"/>
+        </units>
+      </endpoint>
+    </reg>
+  </regular>
+</device>
+
